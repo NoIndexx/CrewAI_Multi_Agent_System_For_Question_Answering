@@ -32,7 +32,7 @@ The system uses two specialized AI agents, each powered by a different LLM:
    - Function: Gathers context-rich information from online sources
 
 2. **Answer Generation Agent**:
-   - Powered by: **OpenAI's GPT model** (default)
+   - Powered by: **OpenAI's GPT 4o Mini** 
    - Role: Synthesizes retrieved information into concise answers
    - Function: Creates well-structured answers with source citations
 
@@ -55,6 +55,7 @@ The application includes a `db/` directory for:
    OPENAI_API_KEY=your_openai_api_key
    GROQ_API_KEY=your_groq_api_key
    SERPER_API_KEY=your_serper_api_key
+   OPENAI_MODEL_NAME=gpt-4o-mini
    ```
 
 2. Install dependencies:
