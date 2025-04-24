@@ -6,7 +6,7 @@ import textwrap
 from helper import load_env
 from crewai import Agent, Task, Crew
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, WebsiteSearchTool
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SkipValidation
 from typing import List
 from streamlit.components.v1 import html
 
@@ -90,16 +90,13 @@ st.write("Ask any question and get a concise, context-aware answer powered by AI
 
 # Input field for the question
 st.write("Insert your question here:")
-question = st.text_input("", "What is the latest news regarding the Pope?")
+question = st.text_input(label="Question Input", value="What is the latest news regarding the Pope?", label_visibility="collapsed")
 
 # Variable to store the result
 result = None
 
-# Create two columns for buttons
-col1, col2 = st.columns(2)
-
-# Run button in first column
-if col1.button("Get Answer"):
+# Run button
+if st.button("Get Answer", use_container_width=True):
     if not question:
         st.error("Please enter a question.")
     else:
@@ -118,11 +115,6 @@ if col1.button("Get Answer"):
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
                 st.error("Check if all API keys are configured correctly in the .env file")
-
-# Cancel button in second column
-if col2.button("Clear"):
-    st.session_state.clear()
-    st.experimental_rerun()
 
 # Display content if result exists
 if result:
