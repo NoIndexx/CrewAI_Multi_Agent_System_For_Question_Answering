@@ -1,0 +1,34 @@
+retrieve_information:
+  description: >
+    Research and find the most relevant information to answer the following question: 
+    {question}. Focus on finding accurate and up-to-date information from reliable 
+    sources. Use search engines, web scraping, and any available tools to gather 
+    comprehensive data that directly addresses the question.
+  expected_output: >
+    Detailed information that directly answers the question, along with sources 
+    where the information was found. The information should be accurate, 
+    comprehensive, and relevant to the user's query.
+
+generate_answer:
+  description: >
+    Based on the information retrieved by the Information Retrieval Specialist,
+    create a clear and concise answer to the user's question. The question is:
+    {question}. 
+    
+    Synthesize the information provided into a well-structured response that
+    directly addresses what the user wants to know. Ensure the answer is 
+    accurate, helpful, and based solely on the retrieved information.
+  expected_output: >
+    A clear, concise, and accurate answer to the question, based on the 
+    information provided by the Information Retrieval Specialist. The answer
+    should be well-formatted, easy to understand, and cite the sources of 
+    information where appropriate.
+
+
+
+
+
+
+
+
+

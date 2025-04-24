@@ -1,0 +1,8 @@
+# This app uses python 3.11.11
+openai==1.76.0
+pydantic==2.11.3
+python-dotenv==1.0.1
+dotenv==0.9.9
+streamlit==1.44.1
+crewai
+crewai_tools
