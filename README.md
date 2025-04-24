@@ -4,12 +4,44 @@ This application demonstrates an advanced AI-powered question answering system t
 
 ## Overview
 
-The AI Question Answering System uses large language models (LLMs) to:
+The AI Question Answering System uses the CrewAI framework and multiple large language models (LLMs) to:
 
 - Find relevant information from reliable sources
 - Process and analyze retrieved data
 - Generate accurate and concise answers to user questions
 - Provide sources for the information used in answers
+
+## Technical Architecture
+
+### CrewAI Framework
+
+This application is built on the [CrewAI framework](https://github.com/joaomdmoura/crewAI), which enables the creation of multiple AI agents that can collaborate to solve complex tasks. CrewAI provides:
+
+- **Agent-based architecture**: Define specialized AI agents with specific roles and goals
+- **Task orchestration**: Coordinate tasks between agents with context sharing
+- **Tool integration**: Use specialized tools like web search and web scraping
+
+### Multi-Agent System Components
+
+The system uses two specialized AI agents, each powered by a different LLM:
+
+1. **Information Retrieval Agent**:
+   - Powered by: **Groq's Llama-3.3-70B-Versatile** model
+   - Role: Finds and retrieves relevant information from the web
+   - Tools: SerperDev web search API, web scraping, and website search
+   - Function: Gathers context-rich information from online sources
+
+2. **Answer Generation Agent**:
+   - Powered by: **OpenAI's GPT model** (default)
+   - Role: Synthesizes retrieved information into concise answers
+   - Function: Creates well-structured answers with source citations
+
+### Database and Storage
+
+The application includes a `db/` directory for:
+- Local document storage
+- Persisting conversation history
+- Storing user preferences and configuration
 
 ## Prerequisites
 
@@ -49,12 +81,26 @@ This will start the Streamlit server and automatically open the application in y
    - First, the AI-generated answer to your question
    - Below the answer, a list of sources where the information was found
 
+## How It Works
+
+1. **Question Analysis**: When a user submits a question, it is passed to the CrewAI system
+2. **Information Retrieval**: The Information Retrieval Agent (using Groq's Llama model) searches the web using:
+   - SerperDev API for web search results
+   - Web scraping to extract content from relevant pages
+   - Website search to find specific information
+3. **Context Creation**: Retrieved information is structured and formatted as context
+4. **Answer Generation**: The Answer Generation Agent (using OpenAI's model) creates a comprehensive answer based on the context
+5. **Source Citation**: Sources are tracked throughout the process and displayed alongside the answer
+
 ## Project Structure
 
 - `app.py`: Streamlit application with the AI Question Answering interface
-- `agents.yaml`: Configurations for specialized AI agents
+- `agents.yaml`: Configurations for specialized AI agents, defining their roles, goals, and backstories
 - `tasks.yaml`: Task configurations for information retrieval and answer generation
-- `.env`: Environment variables file (API keys) 
+- `.env`: Environment variables file (API keys)
+- `helper.py`: Utility functions for environment setup
+- `requirements.txt`: Python dependencies
+- `db/`: Directory for storing local data (when configured)
 
 ## Next Steps for Development
 
